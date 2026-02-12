@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Simple To-Do API")
 
@@ -19,3 +20,11 @@ def get_todos():
 def add_todo(item: TodoItem):
     todos.append(item)
     return item
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # you can later restrict to your frontend URL
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
