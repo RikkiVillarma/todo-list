@@ -63,3 +63,13 @@ def delete_todo(todo_id: int):
             todos.pop(i)
             return {"message": f"Todo {todo_id} deleted successfully"}
     raise HTTPException(status_code=404, detail="Todo not found")
+
+
+# -------------------------
+# NEW /projects ROUTE
+# -------------------------
+projects: List[dict] = []  # empty list to return
+
+@app.get("/projects")
+def get_projects():
+    return projects  # returns [] so React can safely map over it
